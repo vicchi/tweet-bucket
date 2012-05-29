@@ -9,7 +9,7 @@
 	# Things you may want to change in a hurry
 	#
 
-	$GLOBALS['cfg']['site_name'] = 'flamework';
+	$GLOBALS['cfg']['site_name'] = 'tweet-bucket';
 	$GLOBALS['cfg']['environment'] = 'dev';
 
 	$GLOBALS['cfg']['site_disabled'] = 0;
@@ -50,6 +50,13 @@
 			2 => 'user2',
 		),
 	);
+
+	# Twitter OAuth stuff
+
+	$GLOBALS['cfg']['twitter_oauth_key'] = '';
+	$GLOBALS['cfg']['twitter_oauth_secret'] = '';	
+	$GLOBALS['cfg']['crypto_oauth_cookie_secret'] = '';	# (see notes in www/sign_oauth.php)
+	$GLOBALS['cfg']['twitter_api_perms'] = 'read';
 
 	$GLOBALS['cfg']['abs_root_url']		= 'http://'.($_SERVER['SERVER_NAME'] ? $_SERVER['SERVER_NAME'] : 'fake.com').'/';
 	$GLOBALS['cfg']['safe_abs_root_url']	= $GLOBALS['cfg']['abs_root_url'];
