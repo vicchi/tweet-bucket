@@ -64,6 +64,31 @@
 	$GLOBALS['cfg']['smarty_template_dir'] = realpath(dirname(__FILE__) . '/../templates/');
 	$GLOBALS['cfg']['smarty_compile_dir'] = realpath(dirname(__FILE__) . '/../templates_c/');
 
+	# Google OAuth2 stuff
+	# Configure these from the values you got back from the Google APIs Console
+	# (https://code.google.com/apis/console/)
+	
+	# Stuff you will 100% want to configure; you'll get the Client ID and the Client
+	# Secret from the Google APIs Console when you create a new Project and generate
+	# OAuth2 credentials - see https://code.google.com/apis/console
+	
+	$GLOBALS['cfg']['google_oauth2_client_id'] = '';
+	$GLOBALS['cfg']['google_oauth2_client_secret'] = '';
+	
+	# Stuff you'll probably want to configure; this is the bare-bones scope needed to
+	# actually authenticate with Google via OAuth2. Take a look at the OAuth 2.0 Playground
+	# - https://code.google.com/oauthplayground/ - for a reasonably complete list
+	
+	$GLOBALS['cfg']['google_oauth2_scope'] = 'https://www.googleapis.com/auth/userinfo.profile';
+	
+	# Stuff you probably won't want to configure
+	
+	$GLOBALS['cfg']['google_oauth2_access_type'] = 'offline';
+	$GLOBALS['cfg']['google_oauth2_approval'] = 'auto';
+	
+	# Stuff you shouldn't configure unless you're using custom callback code
+	
+	$GLOBALS['cfg']['google_oauth2_redirect_uri'] = 'auth_callback_google_oauth2.php';
 
 	# No, seriously. Change these...
 
