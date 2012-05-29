@@ -1,0 +1,37 @@
+{include file="inc_head.txt"}
+
+{if $error|@count}
+
+<p class="error">
+{if $error.oauth2_missing_credentials}
+This website is not properly configured for signing you in using your Google credentials. It's not your fault but it is currently unsafe to proceed.
+
+{elseif $error.oauth2_missing_auth_code}
+There was a problem getting the required auth-y bits (specifically an <code>auth code</code>) from Google!
+
+{elseif $error.oauth2_access_token}
+There was a problem getting the required auth-y bits (specifically an <code>access token</code>) from Google!
+
+{elseif $error.oauth2_user_profile}
+There was a problem getting the required auth-y bits (specifically your user profile) from Google!
+
+{elseif $error.dberr_user}
+There was a database-related problem creating your account. Sad face.
+
+{elseif $error.dberr_googleuser}
+There was a database-related problem creating your account, specifically associating it with your Google account. Curses!
+
+{elseif $error.dberr_googleuser_update}
+There was a database-related problem updating your Google information. Blargh...
+
+{else}
+Ack! The INVISIBLE ERROR CAT hisses at you...
+{/if}
+</p>
+
+{else}
+{* you should never get here *}
+<!-- something is very wrong -->
+{/if}
+
+{include file="inc_foot.txt"}
