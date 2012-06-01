@@ -14,7 +14,7 @@ $GLOBALS['cfg']['google_oauth2_token_url'] = '/token';
 
 #################################################################
 
-function google_oauth2_get_auth_url () {
+function google_oauth2_get_auth_url ($args=null) {
 	$endpoint = $GLOBALS['cfg']['google_oauth2_endpoint'];
 	$url = $endpoint . $GLOBALS['cfg']['google_oauth2_auth_url'];
 	
@@ -29,6 +29,11 @@ function google_oauth2_get_auth_url () {
 		'access_type' => $GLOBALS['cfg']['google_oauth2_access_type'],
 		'approval_prompt' => $GLOBALS['cfg']['google_oauth2_approval']
 	);
+	
+	if ($args) {
+		$state = serialize ($args);
+		$params['state'] = rawurlencode ($state);
+	}
 
 	$url = google_oauth2_normalize_http_url ($url) . '?' . google_oauth2_to_postdata ($params);
 

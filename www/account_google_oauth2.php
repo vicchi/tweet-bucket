@@ -1,7 +1,8 @@
 <?php
 
-include ("include/init.php");
-loadlib ("google_oauth2");
+include ('include/init.php');
+
+loadlib ('google_oauth2');
 loadlib ('log');
 
 log_trace ("this is $_SERVER[SCRIPT_NAME] on {$GLOBALS['cfg']['environment']}");
@@ -9,11 +10,7 @@ log_trace ("this is $_SERVER[SCRIPT_NAME] on {$GLOBALS['cfg']['environment']}");
 $redir = (get_str ('redir')) ? get_str ('redir') : '/';
 $referrer = ($_SERVER['SCRIPT_NAME']) ? ($_SERVER['SCRIPT_NAME']) : __FILE__;
 
-log_trace ('referrer: ' . $referrer);
-
-# Some basic sanity checking ... are you already logged in?
-
-if ($GLOBALS['cfg']['user']['id']) {
+if (!$GLOBALS['cfg']['user']['id']) {
 	header ("location: {$redir}");
 	exit ();
 }

@@ -42,6 +42,7 @@ DROP TABLE IF EXISTS `GoogleUsers`;
 CREATE TABLE `GoogleUsers` (
 	`user_id` int(11) UNSIGNED NOT NULL,
 	`google_id` varchar(20) NOT NULL,
+	`deleted` int(10) unsigned NOT NULL,
 	`oauth_token` char(34) NOT NULL,
 	`refresh_token` char(34) NOT NULL,
 	PRIMARY KEY (`user_id`),

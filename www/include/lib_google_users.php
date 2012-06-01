@@ -2,10 +2,10 @@
 
 #################################################################
 
-function google_users_create_user ($user) {
+function google_users_create_user ($google_user) {
 	$hash = array ();
 
-	foreach ($user as $k => $v) {
+	foreach ($google_user as $k => $v) {
 		$hash[$k] = AddSlashes ($v);
 	}
 
@@ -15,13 +15,13 @@ function google_users_create_user ($user) {
 		return null;
 	}
 
-	$cache_key = "google_user_{$user['google_id']}";
-	cache_set ($cache_key, $user, "cache locally");
+	$cache_key = "google_user_{$google_user['google_id']}";
+	cache_set ($cache_key, $google_user, "cache locally");
 
-	$cache_key = "google_user_{$user['id']}";
-	cache_set ($cache_key, $user, "cache locally");
+	$cache_key = "google_user_{$google_user['id']}";
+	cache_set ($cache_key, $google_user, "cache locally");
 
-	return $user;
+	return $google_user;
 }
 
 #################################################################
@@ -49,6 +49,22 @@ function google_users_update_user (&$google_user, $update) {
 	}
 
 	return $rsp;
+}
+
+#################################################################
+
+function google_users_delete_user (&$google_user) {
+	$delete = array (
+		'deleted' => time ()
+	);
+
+	return google_users_update_user ($google_user, $delete);
+}
+
+#################################################################
+
+function google_users_reload_user (&$google_user) {
+	$google_user = google_users_get_by_id ($google_user['user_id']);
 }
 
 #################################################################

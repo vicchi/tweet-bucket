@@ -15,14 +15,17 @@ There was a problem getting the required auth-y bits (specifically an <code>acce
 {elseif $error.oauth2_user_profile}
 There was a problem getting the required auth-y bits (specifically your user profile) from Google!
 
-{elseif $error.dberr_user}
+{elseif $error.dberr_user_create}
 There was a database-related problem creating your account. Sad face.
 
-{elseif $error.dberr_googleuser}
+{elseif $error.dberr_googleuser_create}
 There was a database-related problem creating your account, specifically associating it with your Google account. Curses!
 
 {elseif $error.dberr_googleuser_update}
 There was a database-related problem updating your Google information. Blargh...
+
+{elseif $error.dberr_googleuser_mismatch}
+There was a database-related problem matching your Google information to your account information. Head scratching is going on ...
 
 {else}
 Ack! The INVISIBLE ERROR CAT hisses at you...
