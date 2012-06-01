@@ -1,7 +1,7 @@
 	</div>
 
 	<div id="footer">
-		Footer
+		tweet bucket is a <a href="http://www.garygale.com/">vicchi</a> thing.
 	</div>
 
 {if $cfg.admin_flags_show_notices}

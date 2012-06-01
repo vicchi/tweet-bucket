@@ -22,21 +22,21 @@
 
 	<div id="nav">
 		<div id="login" style="float: left;">
-			<a href="{$cfg.abs_root_url}">Home</a>
+			<a href="{$cfg.abs_root_url}">◻</a>
 		</div>
 		<div id="login" style="float: right;">
 {if $cfg.user.id}
-			Hello {$cfg.user.username|escape}.
-			<a href="{$cfg.abs_root_url}account/">Account</a>
+			<span class="youare">you're signed in as</span>
+			<strong>{$cfg.user.username|escape}</strong>
 			|
-			<a href="{$cfg.abs_root_url}signout/">Logout</a>
+			<a href="{$cfg.abs_root_url}account/">account</a>
+			|
+			<a href="{$cfg.abs_root_url}signout/">sign out</a>
 {else}
 	{if $cfg.enable_feature_signin}
-		{if $cfg.enable_feature_signup}
-			<a href="{$cfg.abs_root_url}signup/">Create New Account</a>
-			|
-		{/if}
-			<a href="{$cfg.abs_root_url}signin/">Sign In</a>
+		<a href="{$cfg.abs_root_url}signin/google/">sign in w/ google</a>
+		|
+		<a href="{$cfg.abs_root_url}signin/twitter">sign in w/ twitter</a>
 	{/if}
 {/if}
 		</div>
