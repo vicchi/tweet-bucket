@@ -1,14 +1,25 @@
 {assign var="page_title" value="Your account"}
 {include file="inc_head.txt"}
 
-<h1>Your account</h1>
+<h1>this is you</h1>
 
-{if $smarty.get.password}<p class="message">Your password has been updated.</p>{/if}
+{if $smarty.get.password}<p class="message">your password has been updated.</p>{/if}
 
 <ul>
-	<li><a href="/account/password/">Change your password</a></li>
+	<li>{if $has_google_account}
+	you're successfully authenticated with your Google account ... nice.
+	{else}
+	<a href="/account/auth/google/">authenticate with your Google account</a>
+	{/if}</li>
+	<li>{if $has_twitter_account}
+	you're successfully authenticated with your Twitter account ... sweet.
+	{else}
+	<a href="/account/auth/twitter/">authenticate with your Twitter account</a>
+	{/if}</li>
+	
+	<li><a href="/account/password/">change your password</a></li>
 {if $cfg.enable_feature_account_delete}
-	<li><a href="/account/delete/">Delete your account</a></li>
+	<li><a href="/account/delete/">delete your account</a></li>
 {/if}
 </ul>
 
