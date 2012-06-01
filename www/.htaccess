@@ -14,14 +14,24 @@
 # more explicit caching with Expires headers anyway.
 FileETag none
 
-# The base set of sensible PHP options. You could put these in your
-# php.ini file too, but having them in your Apache config puts
-# everything in one place. Magic quotes off because they are stupid.
-# Register globals off for the same reason. Track errors is so that
-# we can at least get at the error messages we hide using @func().
-# last_modified is a bad idea if we have any dynamic content. Short
-# tags make for a few saved bytes of cruft and are fine unless you're
+# The base set of sensible PHP options. These are a duplicate of those
+# in www/php.ini.example, but I'm assuming your web host runs PHP as an Apache
+# module and not as a CGI.
+#
+# If your Apache error log is full of barf like ...
+#
+# www/.htaccess: Invalid command 'php_value', perhaps misspelled or defined by a module not included in the server configuration
+#
+# ... then PHP is a CGI. So comment out every php_value and php_flag command in this
+# file and rename www/php.ini.example to www/php.ini and all should be happy again.
+#
+# Magic quotes off because they are stupid.
+# Register globals off for the same reason.
+# Track errors is so that we can at least get at the error messages we hide using @func().
+# last_modified is a bad idea if we have any dynamic content.
+# Short tags make for a few saved bytes of cruft and are fine unless you're
 # running another XML preprocessor over your code (wtf?).
+
 php_value magic_quotes_gpc 0
 php_value register_globals 0
 php_value magic_quotes_runtime 0
@@ -34,6 +44,7 @@ php_flag display_errors off
 # this sets all current and future error flags on, except for E_NOTICE
 # which can go fuck itself. we have some separate code for checking the
 # one notice we do care about.
+
 php_value error_reporting 2147483639
 
 # Some basic pointers to php files
@@ -48,6 +59,8 @@ RewriteEngine on
 
 RewriteRule  ^signup/?$			signup.php		[L]
 RewriteRule  ^signin/?$			signin.php		[L]
+RewriteRule  ^signin/google/?$	signin_google_oauth2.php	[L]
+RewriteRule  ^signin/twitter/?$	signin_twitter_oauth.php	[L]
 RewriteRule  ^signout/?$		signout.php		[L]
 RewriteRule  ^checkcookie/?$		checkcookie.php	[L]
 

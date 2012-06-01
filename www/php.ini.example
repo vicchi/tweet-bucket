@@ -1,0 +1,36 @@
+<?php
+
+# The base set of sensible PHP options. These are a duplicate of
+# those in www/.htaccess but if your web host runs PHP as a CGI and
+# not as an Apache module, you'll need to rename this file to www/php.ini
+# and comment out these options in www/.htaccess. Or get another web host
+# provider, but doing this once per install configuration hack is probably
+# a lot quicker and easier.
+#
+# You'll know if you need to do this if your Apache error log is full of barf like
+#
+# www/.htaccess: Invalid command 'php_value', perhaps misspelled or defined by a module not included in the server configuration
+#
+# Magic quotes off because they are stupid.
+# Register globals off for the same reason.
+# Track errors is so that we can at least get at the error messages we hide using @func().
+# last_modified is a bad idea if we have any dynamic content.
+# Short tags make for a few saved bytes of cruft and are fine unless you're
+# running another XML preprocessor over your code (wtf?).
+
+magic_quotes_gpc 0
+register_globals 0
+magic_quotes_runtime 0
+track_errors 1
+last_modified off
+short_open_tag on
+
+display_errors off
+
+# this sets all current and future error flags on, except for E_NOTICE
+# which can go fuck itself. we have some separate code for checking the
+# one notice we do care about.
+
+error_reporting 2147483639
+
+?>
