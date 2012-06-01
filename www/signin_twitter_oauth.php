@@ -4,6 +4,7 @@
 	loadlib("twitter_oauth");
 
 	$redir = (get_str('redir')) ? get_str('redir') : '/';
+	$referrer = ($_SERVER['REQUEST_URI']) ? ($_SERVER['REQUEST_URI']) : __FILE__;
 
 	# Some basic sanity checking like are you already logged in?
 
@@ -65,7 +66,9 @@
 	$args = array(
 	);
 
-	$extra = array();
+	$extra = array(
+		'referrer=' . $basename ($referrer);
+	);
 
 	if ($redir = get_str('redir')){
 		$extra[] = "redir=" . urlencode($redir);
